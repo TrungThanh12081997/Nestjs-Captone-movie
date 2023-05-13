@@ -1,5 +1,5 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { PrismaClient, phim } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 @Injectable()
@@ -13,7 +13,6 @@ export class QuanLyRapService {
     }
   }
 
-  // eslint-disable-next-line prettier/prettier
   async layThongTinCumRapTheoHeThong(ma_cum_rap: number) {
     try {
       const cumRap = await prisma.cumRap.findMany({

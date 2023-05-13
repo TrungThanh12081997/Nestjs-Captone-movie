@@ -4,6 +4,6 @@ import { QuanLyRapController } from './quan-ly-rap.controller';
 
 @Module({
   controllers: [QuanLyRapController],
-  providers: [QuanLyRapService]
+  providers: [QuanLyRapService],
 })
 export class QuanLyRapModule {}

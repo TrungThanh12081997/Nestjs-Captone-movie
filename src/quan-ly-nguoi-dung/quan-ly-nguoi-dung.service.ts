@@ -1,12 +1,16 @@
-/* eslint-disable prettier/prettier */
 import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaClient, nguoiDung } from '@prisma/client';
-import { generateToken } from '../../src/config/jwt.js';
 import * as bcrypt from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
 
 const prisma = new PrismaClient();
 @Injectable()
 export class QuanLyNguoiDungService {
+  constructor(
+    private jwtService: JwtService,
+    private config: ConfigService
+  ) { }
   async layDanhSachLoaiNguoiDung() {
     try {
       const nguoiDung = (await prisma.nguoiDung.findMany()).map(
@@ -28,10 +32,17 @@ export class QuanLyNguoiDungService {
       });
       if (checkUser) {
         const checkPass = await bcrypt.compare(mat_khau, checkUser.mat_khau);
-        const token = generateToken(checkUser);
+        const token = this.jwtService.sign({
+          data: 'node 29'
+        }, {
+          secret: this.config.get("SECRET_KEY"),
+          expiresIn: "8h"
+        }
+        );
 
         if (checkPass) {
-          return {token};
+          console.log('pass')
+          return token;
         } else {
           return 'Wrong password';
         }

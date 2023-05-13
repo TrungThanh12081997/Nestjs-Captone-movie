@@ -1,94 +1,126 @@
-// import {
-//   Body,
-//   Controller,
-//   Delete,
-//   Get,
-//   Param,
-//   Post,
-//   Query,
-//   UploadedFile,
-//   UseInterceptors,
-// } from '@nestjs/common';
-// // import { QuanLyPhimService } from './quan-ly-phim.service';
-// import { ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
-// import { phim } from '@prisma/client';
-// import { FileInterceptor } from '@nestjs/platform-express';
-// import { diskStorage } from 'multer';
-// import { FileUploadDto } from './Dto/phim.dto';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Query,
+  UploadedFile,
+  UseInterceptors,
+  UseGuards,
+} from '@nestjs/common';
+import { QuanLyPhimService } from './quan-ly-phim.service';
+import { ApiBearerAuth, ApiBody, ApiConsumes, ApiTags } from '@nestjs/swagger';
+import { phim } from '@prisma/client';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import { FileUploadDto, PhimDto } from './Dto/phim.dto';
+import { AuthGuard } from '@nestjs/passport';
 
-// @ApiTags('Quản lý phim')
-// @Controller('/api/quanLyPhim')
-// export class QuanLyPhimController {
-//   constructor(private readonly quanLyPhimService: QuanLyPhimService) {}
-//   @ApiConsumes('multipart/form-data')
-//   @ApiBody({
-//     description: 'File upload',
-//     type: FileUploadDto,
-//   })
-//   @Get('/layDanhSachBanner')
-//   layDanhSachBanner() {
-//     return this.quanLyPhimService.layDanhSachBanner();
-//   }
+@ApiTags('Quản lý phim')
+@Controller('/api/quanLyPhim')
+export class QuanLyPhimController {
+  constructor(private readonly quanLyPhimService: QuanLyPhimService) {}
 
-//   @Get('/layDanhSachPhim')
-//   layDanhSachphim(@Body() body: phim) {
-//     return this.quanLyPhimService.layDanhSachphim(body);
-//   }
+  @ApiConsumes('multipart/form-data')
+  @ApiBody({
+    description: 'File upload',
+    type: FileUploadDto,
+  })
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/layDanhSachBanner')
+  layDanhSachBanner() {
+    return this.quanLyPhimService.layDanhSachBanner();
+  }
 
-//   @Get('/layDanhSachPhimPhanTrang')
-//   layDanhSachphimPhanTrang(
-//     @Query('soTrang') soTrang: number,
-//     @Query('soPhanTuTrenTrang') soPhanTuTrenTrang: number,
-//   ) {
-//     return this.quanLyPhimService.layDanhSachphimPhanTrang(
-//       Number(soTrang),
-//       Number(soPhanTuTrenTrang),
-//     );
-//   }
+  @ApiBody({
+    description: 'Lấy danh sách phim',
+    type: PhimDto,
+  })
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/layDanhSachPhim')
+  layDanhSachphim(@Body() body: phim) {
+    return this.quanLyPhimService.layDanhSachphim(body);
+  }
 
-//   @Get('/layDanhSachPhimTheoNgay')
-//   // eslint-disable-next-line prettier/prettier
-//   layDanhSachphimTheoNgay(@Body() data: { timestart: Date; timeend: Date }) {
-//     return this.quanLyPhimService.layDanhSachphimTheoNgay(data);
-//   }
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/layDanhSachPhimPhanTrang')
+  layDanhSachphimPhanTrang(
+    @Query('soTrang') soTrang: number,
+    @Query('soPhanTuTrenTrang') soPhanTuTrenTrang: number,
+  ) {
+    return this.quanLyPhimService.layDanhSachphimPhanTrang(
+      Number(soTrang),
+      Number(soPhanTuTrenTrang),
+    );
+  }
 
-//   @UseInterceptors(
-//     FileInterceptor(
-//       'file', // keyname
-//       {
-//         storage: diskStorage({
-//           destination: process.cwd() + '/public/img',
-//           filename: (req, file, callback) =>
-//             callback(null, Date.now() + '_' + file.originalname),
-//         }),
-//       },
-//     ),
-//   )
-//   @Post('/uploadHinhChoPhim/:ma_phim')
-//   uploadHinhChoPhim(
-//     @Param('ma_phim') ma_phim: string,
-//     @UploadedFile() file: Express.Multer.File,
-//   ) {
-//     return this.quanLyPhimService.uploadHinhChoPhim(ma_phim.toString(), file);
-//   }
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/layDanhSachPhimTheoNgay')
+  layDanhSachphimTheoNgay(@Body() data: { timestart: Date; timeend: Date }) {
+    return this.quanLyPhimService.layDanhSachphimTheoNgay(data);
+  }
 
-//   @Post('/capNhatPhim/:ma_phim')
-//   capNhatPhim(@Body() body: phim, @Param('ma_phim') ma_phim: string) {
-//     return this.quanLyPhimService.capNhatPhim(body, ma_phim.toString());
-//   }
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
+  @UseInterceptors(
+    FileInterceptor(
+      'file', // keyname
+      {
+        storage: diskStorage({
+          destination: process.cwd() + '/public/img',
+          filename: (req, file, callback) =>
+            callback(null, Date.now() + '_' + file.originalname),
+        }),
+      },
+    ),
+  )
+  @Post('/uploadHinhChoPhim/:ma_phim')
+  uploadHinhChoPhim(
+    @Param('ma_phim') ma_phim: string,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    return this.quanLyPhimService.uploadHinhChoPhim(ma_phim.toString(), file);
+  }
 
-//   @Post('/timPhimTheoTen')
-//   timPhimTheoTen(@Body() body: phim) {
-//     return this.quanLyPhimService.timPhimTheoTen(body);
-//   }
+  @ApiBody({
+    description: 'Cập nhật phim',
+    type: PhimDto,
+  })
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
+  @Post('/capNhatPhim/:ma_phim')
+  capNhatPhim(@Body() body: phim, @Param('ma_phim') ma_phim: string) {
+    return this.quanLyPhimService.capNhatPhim(body, ma_phim.toString());
+  }
 
-//   @Delete('/xoaPhimTheoTen/:ma_phim')
-//   xoaPhimTheoTen(@Param('ma_phim') ma_phim: number) {
-//     return this.quanLyPhimService.xoaPhimTheoTen(Number(ma_phim));
-//   }
+  @ApiBody({
+    description: 'Tìm tên phim',
+    type: PhimDto,
+  })
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
+  @Post('/timPhimTheoTen')
+  timPhimTheoTen(@Body() body: phim) {
+    return this.quanLyPhimService.timPhimTheoTen(body);
+  }
 
-//   @Get('/layThongTinPhim/:ma_phim')
-//   layThongTinPhim(@Param('ma_phim') ma_phim: number) {
-//     return this.quanLyPhimService.layThongTinPhim(Number(ma_phim));
-//   }
-// }
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
+  @Delete('/xoaPhimTheoTen/:ma_phim')
+  xoaPhimTheoTen(@Param('ma_phim') ma_phim: number) {
+    return this.quanLyPhimService.xoaPhimTheoTen(Number(ma_phim));
+  }
+
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
+  @Get('/layThongTinPhim/:ma_phim')
+  layThongTinPhim(@Param('ma_phim') ma_phim: number) {
+    return this.quanLyPhimService.layThongTinPhim(Number(ma_phim));
+  }
+}

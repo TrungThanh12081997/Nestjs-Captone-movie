@@ -1,7 +1,5 @@
-/* eslint-disable prettier/prettier */
 import { HttpException, Injectable } from '@nestjs/common';
 import { CreateQuanLyDatVeDto } from './dto/create-quan-ly-dat-ve.dto';
-import { UpdateQuanLyDatVeDto } from './dto/update-quan-ly-dat-ve.dto';
 import { PrismaClient, lichChieu } from '@prisma/client';
 const prisma = new PrismaClient();
 
@@ -29,9 +27,9 @@ export class QuanLyDatVeService {
 
       const danhSachPhongve = await prisma.rapPhim.findMany({
         include: {
-          cumRap:true
+          cumRap: true
         },
-        
+
       });
       return danhSachPhongve;
     } catch (err) {
@@ -44,7 +42,7 @@ export class QuanLyDatVeService {
 
       await prisma.lichChieu.create({
         data: body,
-        
+
       });
       return 'tạo lịch chiếu ok';
     } catch (err) {

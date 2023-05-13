@@ -10,18 +10,15 @@ import {
   Query,
   UseGuards,
   Headers,
-  Header,
-  Req,
   HttpException
 } from '@nestjs/common';
 import { QuanLyNguoiDungService } from './quan-ly-nguoi-dung.service';
 import { nguoiDung } from '@prisma/client';
 import { ApiBearerAuth, ApiBody, ApiTags } from '@nestjs/swagger';
-import { DangNhapDto } from './Dto/nguoiDung.dto';
+import { DangNhapDto, TimKiemNguoiDungDto } from './Dto/nguoiDung.dto';
 import { AuthGuard } from '@nestjs/passport';
 
 
-// @UseGuards(AuthGuard("jwt"))
 @ApiTags('quản lý người dùng')
 @Controller('/api/quanLyNguoiDung')
 export class QuanLyNguoiDungController {
@@ -30,16 +27,15 @@ export class QuanLyNguoiDungController {
   ) { }
 
 
-  @Get('/layDanhSachLoaiNguoiDung')
-  // @ApiBearerAuth()
+  @ApiBearerAuth()
   @UseGuards(AuthGuard('jwt'))
-  LayDanhSachLoaiNguoiDung(
+  @Get('/layDanhSachLoaiNguoiDung')
+  async LayDanhSachLoaiNguoiDung(
     @Headers('authorization') auth: string
-  ): Promise<string[]> | string {
+  ):Promise<any> {
     try {
-      return auth
-      // console.log('auth',auth)
-      // return this.quanLyNguoiDungService.layDanhSachLoaiNguoiDung();
+      console.log(auth)
+      return await this.quanLyNguoiDungService.layDanhSachLoaiNguoiDung();
     } catch (err) {
       throw new HttpException(err, 404);
     }
@@ -66,6 +62,7 @@ export class QuanLyNguoiDungController {
     return this.quanLyNguoiDungService.layDanhSachNguoiDung();
   }
 
+  @ApiBearerAuth()
   @UseGuards(AuthGuard("jwt"))
   @Get('/layDanhSachNguoiDungPhanTrang')
   layDanhSachNguoiDungPhanTrang(
@@ -78,12 +75,22 @@ export class QuanLyNguoiDungController {
     );
   }
 
+  @ApiBody({
+    description: 'Tìm kiếm người dùng',
+    type: TimKiemNguoiDungDto,
+  })
+  @ApiBearerAuth()
   @UseGuards(AuthGuard("jwt"))
-  @Get('/timKiemNguoiDung')
+  @Post('/timKiemNguoiDung')
   timKiemNguoiDung(@Body() body: nguoiDung) {
     return this.quanLyNguoiDungService.timKiemNguoiDung(body);
   }
 
+  @ApiBody({
+    description: 'Tìm kiếm người dùng phân trang',
+    type: TimKiemNguoiDungDto,
+  })
+  @ApiBearerAuth()
   @UseGuards(AuthGuard("jwt"))
   @Get('/timKiemNguoiDungPhanTrang')
   timKiemNguoiDungPhanTrang(
@@ -98,24 +105,42 @@ export class QuanLyNguoiDungController {
     );
   }
 
+  @ApiBody({
+    description: 'Tìm kiếm thông tin tài khoản',
+    type: TimKiemNguoiDungDto,
+  })
+  @ApiBearerAuth()
   @UseGuards(AuthGuard("jwt"))
   @Post('/thongTinTaiKhoan/:id')
   thongTinTaiKhoan(@Body() body: nguoiDung, @Param('id') id: string) {
     return this.quanLyNguoiDungService.thongTinTaiKhoan(body, id.toString());
   }
 
+
+  @ApiBearerAuth()
   @UseGuards(AuthGuard("jwt"))
   @Post('/layThongTinNguoiDung/:id')
   layThongTinNguoiDung(@Param('id') id: string) {
     return this.quanLyNguoiDungService.layThongTinNguoiDung(id.toString());
   }
 
+  @ApiBody({
+    description: 'Thêm người dùng',
+    type: TimKiemNguoiDungDto,
+  })
+  @ApiBearerAuth()
   @UseGuards(AuthGuard("jwt"))
   @Post('/themNguoiDung')
   themNguoiDung(@Body() body: nguoiDung) {
     return this.quanLyNguoiDungService.themNguoiDung(body);
   }
 
+  @ApiBody({
+    description: 'Cập nhật thông tin người dùng',
+    type: TimKiemNguoiDungDto,
+  })
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard("jwt"))
   @Put('/capNhatThongTinNguoiDung/:id')
   capNhatThongTinNguoiDungByIdParam(
     @Body() body: nguoiDung,
@@ -127,6 +152,12 @@ export class QuanLyNguoiDungController {
     );
   }
 
+  @ApiBody({
+    description: 'Cập nhật thông tin người dùng',
+    type: TimKiemNguoiDungDto,
+  })
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard("jwt"))
   @Post('/capNhatThongTinNguoiDung')
   capNhatThongTinNguoiDung(@Body() body: nguoiDung) {
     return this.quanLyNguoiDungService.capNhatThongTinNguoiDung(
@@ -134,7 +165,8 @@ export class QuanLyNguoiDungController {
     );
   }
 
-
+  @ApiBearerAuth()
+  @UseGuards(AuthGuard('jwt'))
   @Delete('/xoaNguoiDung/:id')
   XoaNguoiDung(@Param('id') id: string) {
     return this.quanLyNguoiDungService.xoaNguoiDung(Number(id));
