@@ -1,368 +1,368 @@
-// {
-// 	"info": {
-// 		"_postman_id": "34aadb77-8b63-4e48-9b08-9b8171453e92",
-// 		"name": "Capstone_movie",
-// 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-// 		"_exporter_id": "16747622"
-// 	},
-// 	"item": [
-// 		{
-// 			"name": "Đặt vé",
-// 			"request": {
-// 				"method": "POST",
-// 				"header": [],
-// 				"body": {
-// 					"mode": "raw",
-// 					"raw": "{\r\n    \"tai_khoan\":\"1\",\r\n    \"ma_lich_chieu\":\"1\",\r\n    \"ma_ghe\":\"1\"\r\n}",
-// 					"options": {
-// 						"raw": {
-// 							"language": "json"
-// 						}
-// 					}
-// 				},
-// 				"url": {
-// 					"raw": "{{domain}}/api/quanLyDatVe/datVe",
-// 					"host": [
-// 						"{{domain}}"
-// 					],
-// 					"path": [
-// 						"api",
-// 						"quanLyDatVe",
-// 						"datVe"
-// 					]
-// 				}
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Lấy danh sách phòng vé",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Tạo lịch chiếu",
-// 			"request": {
-// 				"method": "POST",
-// 				"header": [],
-// 				"body": {
-// 					"mode": "raw",
-// 					"raw": "{\r\n    \"ma_rap\":1,\t\t\r\n    \"ma_phim\":2,\t\t\r\n    \"gia_ve\":1000\r\n}",
-// 					"options": {
-// 						"raw": {
-// 							"language": "json"
-// 						}
-// 					}
-// 				},
-// 				"url": {
-// 					"raw": "{{domain}}/api/quanLyDatVe/taoLichChieu",
-// 					"host": [
-// 						"{{domain}}"
-// 					],
-// 					"path": [
-// 						"api",
-// 						"quanLyDatVe",
-// 						"taoLichChieu"
-// 					]
-// 				}
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Lấy danh sách loại người dùng",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Đăng nhập",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Đăng ký",
-// 			"request": {
-// 				"method": "POST",
-// 				"header": [],
-// 				"body": {
-// 					"mode": "raw",
-// 					"raw": "{\r\n    \"ho_ten\":\"\",\r\n    \"email\":\"\",\r\n    \"so_dt\":\"\",\r\n       \"\":\"\",\r\n        \"\":\"\",\r\n}"
-// 				},
-// 				"url": {
-// 					"raw": "{{domain}}/api/quanLyNguoiDung/dangKy",
-// 					"host": [
-// 						"{{domain}}"
-// 					],
-// 					"path": [
-// 						"api",
-// 						"quanLyNguoiDung",
-// 						"dangKy"
-// 					]
-// 				}
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Lấy danh sách người dùng",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Lấy danh sách người dùng phân trang",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": [],
-// 				"url": {
-// 					"raw": "{{domain}}/api/quanLyNguoiDung/layDanhSachNguoiDungPhanTrang?soTrang=1&soPhanTuTrenTrang=20",
-// 					"host": [
-// 						"{{domain}}"
-// 					],
-// 					"path": [
-// 						"api",
-// 						"quanLyNguoiDung",
-// 						"layDanhSachNguoiDungPhanTrang"
-// 					],
-// 					"query": [
-// 						{
-// 							"key": "soTrang",
-// 							"value": "1"
-// 						},
-// 						{
-// 							"key": "soPhanTuTrenTrang",
-// 							"value": "20"
-// 						}
-// 					]
-// 				}
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Tìm kiém người dùng",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Tìm kiếm người dùng phân trang",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Sửa thông tin người dùng",
-// 			"request": {
-// 				"method": "POST",
-// 				"header": [],
-// 				"body": {
-// 					"mode": "raw",
-// 					"raw": "{\r\n    \"ho_ten\":\"Đại ca Thành\",\r\n    \"email\":\"use@gmail.com\",\r\n    \"so_dt\":\"090908464312\",\r\n    \"mat_khau\":\"1234\",\r\n    \"loai_nguoi_dung\":\"admin\"\r\n}",
-// 					"options": {
-// 						"raw": {
-// 							"language": "json"
-// 						}
-// 					}
-// 				},
-// 				"url": {
-// 					"raw": "{{domain}}/api/quanLyNguoiDung/thongTinTaiKhoan/3",
-// 					"host": [
-// 						"{{domain}}"
-// 					],
-// 					"path": [
-// 						"api",
-// 						"quanLyNguoiDung",
-// 						"thongTinTaiKhoan",
-// 						"3"
-// 					]
-// 				}
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Lấy thông tin người dùng",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Thêm người dùng",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Cập nhật thông tin người dùng bằng id param",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Cập nhật thông tin người dùng",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Xóa thông tin người dùng",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Lấy danh sách banner",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Lấy danh sách phim theo tên",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Lấy danh sách phim phân trang",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Lấy danh sách phim theo ngày",
-// 			"protocolProfileBehavior": {
-// 				"disableBodyPruning": true
-// 			},
-// 			"request": {
-// 				"method": "GET",
-// 				"header": [],
-// 				"body": {
-// 					"mode": "raw",
-// 					"raw": "{\r\n    \"timestart\": \"1997-05-03\",\r\n    \"timeend\":\"\"\r\n}",
-// 					"options": {
-// 						"raw": {
-// 							"language": "json"
-// 						}
-// 					}
-// 				},
-// 				"url": {
-// 					"raw": "{{domain}}/api/quanLyPhim/layDanhSachPhimTheoNgay",
-// 					"host": [
-// 						"{{domain}}"
-// 					],
-// 					"path": [
-// 						"api",
-// 						"quanLyPhim",
-// 						"layDanhSachPhimTheoNgay"
-// 					]
-// 				}
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Upload hình cho phim",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Cập nhật phim",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Tìm phim theo tên",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Xóa phim theo tên",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Xóa phim theo tên Copy",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Lấy thông tin hệ thống rạp",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Lấy thông tin cụm rạp theo hệ thống",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Lấy thông tin lịch chiếu theo hế thống rạp",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		},
-// 		{
-// 			"name": "Lấy thông tin lịch chiếu theo phim",
-// 			"request": {
-// 				"method": "GET",
-// 				"header": []
-// 			},
-// 			"response": []
-// 		}
-// 	],
-// 	"variable": [
-// 		{
-// 			"key": "domain",
-// 			"value": "http://localhost:8080"
-// 		}
-// 	]
-// }
+{
+	"info": {
+		"_postman_id": "34aadb77-8b63-4e48-9b08-9b8171453e92",
+		"name": "Capstone_movie",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16747622"
+	},
+	"item": [
+		{
+			"name": "Đặt vé",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tai_khoan\":\"1\",\r\n    \"ma_lich_chieu\":\"1\",\r\n    \"ma_ghe\":\"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/api/quanLyDatVe/datVe",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"quanLyDatVe",
+						"datVe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lấy danh sách phòng vé",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Tạo lịch chiếu",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ma_rap\":1,\t\t\r\n    \"ma_phim\":2,\t\t\r\n    \"gia_ve\":1000\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/api/quanLyDatVe/taoLichChieu",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"quanLyDatVe",
+						"taoLichChieu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lấy danh sách loại người dùng",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Đăng nhập",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Đăng ký",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ho_ten\":\"\",\r\n    \"email\":\"\",\r\n    \"so_dt\":\"\",\r\n       \"\":\"\",\r\n        \"\":\"\",\r\n}"
+				},
+				"url": {
+					"raw": "{{domain}}/api/quanLyNguoiDung/dangKy",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"quanLyNguoiDung",
+						"dangKy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lấy danh sách người dùng",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Lấy danh sách người dùng phân trang",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{domain}}/api/quanLyNguoiDung/layDanhSachNguoiDungPhanTrang?soTrang=1&soPhanTuTrenTrang=20",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"quanLyNguoiDung",
+						"layDanhSachNguoiDungPhanTrang"
+					],
+					"query": [
+						{
+							"key": "soTrang",
+							"value": "1"
+						},
+						{
+							"key": "soPhanTuTrenTrang",
+							"value": "20"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Tìm kiém người dùng",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Tìm kiếm người dùng phân trang",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Sửa thông tin người dùng",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ho_ten\":\"Đại ca Thành\",\r\n    \"email\":\"use@gmail.com\",\r\n    \"so_dt\":\"090908464312\",\r\n    \"mat_khau\":\"1234\",\r\n    \"loai_nguoi_dung\":\"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/api/quanLyNguoiDung/thongTinTaiKhoan/3",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"quanLyNguoiDung",
+						"thongTinTaiKhoan",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lấy thông tin người dùng",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Thêm người dùng",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Cập nhật thông tin người dùng bằng id param",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Cập nhật thông tin người dùng",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Xóa thông tin người dùng",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Lấy danh sách banner",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Lấy danh sách phim theo tên",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Lấy danh sách phim phân trang",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Lấy danh sách phim theo ngày",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"timestart\": \"1997-05-03\",\r\n    \"timeend\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{domain}}/api/quanLyPhim/layDanhSachPhimTheoNgay",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"api",
+						"quanLyPhim",
+						"layDanhSachPhimTheoNgay"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload hình cho phim",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Cập nhật phim",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Tìm phim theo tên",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Xóa phim theo tên",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Xóa phim theo tên Copy",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Lấy thông tin hệ thống rạp",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Lấy thông tin cụm rạp theo hệ thống",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Lấy thông tin lịch chiếu theo hế thống rạp",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Lấy thông tin lịch chiếu theo phim",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "domain",
+			"value": "http://localhost:8080"
+		}
+	]
+}
